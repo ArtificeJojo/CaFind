@@ -37,3 +37,40 @@ async function useLocation(lat, lng){
         alert("Failed to find cafes")
     }
 }
+
+function displayCards(cafes) {
+    const container = document.querySelector('.cards');
+    container.innerHTML = '';
+
+    cafes.forEach((cafe, i) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'swipe-wrapper';
+        wrapper.style.zIndex = 200 - i;
+        var newCard = document.querySelectorAll('.location-card:not(.removed)');
+        var allCards = document.querySelectorAll('.location-card');
+    });
+
+    const card = document.createElement('div');
+    card.className = 'location-card';
+
+    const imgUrl = cafe.photos?.[0]?.photo_reference
+    ? `https://maps.googleapis.com/maps/apiplace/photo?maxwidth=400&photoreference=${cafe.photos[0].photo_reference}&key=${apiKey}`
+    :  "https://via.placeholder.com/250x150?text=No+Image";
+
+    const cafeData = {
+        name: cafe.name,
+        place_id: cafe.place_id,
+        photo: imgUrl,
+        rating: cafe.rating || "N/A",
+    };
+
+    card.innerHTML = `
+        <img src="${imgUrl}" alt="${cafeData.name}">
+        <h3>${cafeData.name}</h3>
+        <p>* Rating: ${cafeData.rating}</p>
+        <p><small> Swipe right to save! </small></p>
+    `;
+
+    wrapper.appendChild(card);
+    container.appendChild(wrapper);
+}
