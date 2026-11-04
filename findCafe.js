@@ -19,6 +19,21 @@ function getLocation() {
     }
 }
 
-function useLocation(){
+async function useLocation(lat, lng){
     const endpoint = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${lat},${lng}&radius=1500&type=cafe&key=${apiKey}' ;
+    const url = useProxy ? proxy + endpoint : endpoint;
+
+    try {
+        const response = await fetch(url);
+        const data = await response.json();
+
+        if(data.results)
+            displayCards(data.results);
+        else
+            alert("No cafes found nearby");
+    }
+    catch(e){
+        console.error("Error fetching API:", e);
+        alert("Failed to find cafes")
+    }
 }
