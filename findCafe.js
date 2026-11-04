@@ -73,4 +73,18 @@ function displayCards(cafes) {
 
     wrapper.appendChild(card);
     container.appendChild(wrapper);
+
+    const hammer = new Hammer(wrapper);
+
+    hammer.on("swipeleft", () => {
+        wrapper.style.transform = "translateX(-150%) rotate(-25deg)";
+        wrapper.style.opacity = 0;
+        setTimeout(() => wrapper.remove(), 100);
+    });
+    hammer.on("swiperight", () => {
+        saveCafe(JSON.stringify(cafeData)); //Save cafe data
+        wrapper.style.transform = "translateX(150%) rotate(25deg)";
+        wrapper.style.opacity = 0;
+        setTimeout(() => wrapper.remove(), 100);
+    });
 }
