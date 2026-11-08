@@ -96,8 +96,29 @@ function saveCafe(cafeJSON) {
     if (!saved.find((c=> c.place_id === cafe.place_id))) {
         saved.push(cafe);
         localStorage.setItem('savedCafes', JSON.stringify(saved));
-        aleart(`Saved ${cafe.name} !`);
+        alert(`Saved ${cafe.name} !`);
     }
     else
         alert(`${cafe.name} is already saved`);
+}
+
+function showSaved(){
+    const container = document.querySelector('.cards');
+    container.innerHTML = '';
+    const savedCafes = JSON.parse(localStorage.getItem('savedCafes') || '[]');
+
+    if (savedCafes.length === 0) {
+        continer.innerHTML = '<p>No saved cafes yet.</p>';
+    }
+
+    savedCafes.forEach((cafe) => {
+        const card = document.createElement('div');
+        card.className = 'location-card';
+        card.innerHTML = `
+            <img src="${cafe.photo}" alt="${cafe.name}">
+            <h3>${cafe.name}</h3>
+            <p>* Rating: ${cafe.rating}</p>
+        `;
+        container.appendChild(card);
+    });
 }
