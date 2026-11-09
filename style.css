@@ -1,16 +1,65 @@
 body{
     background-color: rgb(245, 218, 131);
+    text-align: center;
+    font-family: 'Courier New', Courier, monospace;
+    color: rgb(0, 0, 0);
 }
 
 h1{
-    text-align: center;
-    font-family: 'Courier New', Courier, monospace;
     font-size: 50px;
-    color: rgb(0, 0, 0);
 }
 
 h2{
     text-align: center;
     font-family: 'Courier New', Courier, monospace;
     color: rgb(0, 0, 0);
+}
+
+button{
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 20px;
+    color: rgb(255, 255, 255);
+    background-color: rgb(189, 163, 79);
+    border-radius: 16px;
+    border: none;
+    padding: 1vw;
+    outline-style: none;
+}
+
+button:hover{
+    background-color: rgb(238, 209, 115);
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+}
+
+.cards{
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+    height: 500px;
+}
+
+.location-card {
+    width: 100%;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    text-align: center;
+    padding: 1rem;
+    margin-bottom: 1vh;
+}
+
+.location-card img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+}
+
+.swipe-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    transition: transform 0.3s ease, opacity 0.3s ease;
 }
